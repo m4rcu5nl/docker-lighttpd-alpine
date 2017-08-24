@@ -1,0 +1,16 @@
+---
+language: python
+python:
+  - 2.7
+services:
+  - docker
+install:
+  - docker build -t lighttpd .
+  - docker run --name lighttpd -v /etc/localtime:/etc/localtime:ro -v $PWD/htdocs:/var/www/localhost/htdocs -p 8080:80 -d lighttpd:latest
+script:
+  - docker ps | grep -q lighttpd
+after_success:
+  - docker build -t lighttpd .
+  - docker tag lighttpd:latest m4rcu5/lighttpd:latest
+  - test $TRAVIS_BRANCH = "master" && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push m4rcu5/lighttpd:latest
