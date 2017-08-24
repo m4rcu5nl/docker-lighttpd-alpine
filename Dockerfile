@@ -7,9 +7,6 @@ RUN apk update && \
     lighttpd && \
     rm -rf /var/cache/apk/*
 
-# Declare webroot a volume mount point
-VOLUME /var/www/localhost/htdocs
-
 # Expose http port
 EXPOSE 80
 
