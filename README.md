@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/m4rcu5nl/docker-lighttpd-alpine.svg?branch=master)](https://travis-ci.org/m4rcu5nl/docker-lighttpd-alpine) [![GitHub issues](https://img.shields.io/github/issues/m4rcu5nl/docker-lighttpd-alpine.svg)](https://github.com/m4rcu5nl/docker-lighttpd-alpine/issues)
+
 docker-lighttpd-alpine
 ======================
 
