@@ -1,0 +1,10 @@
+language: python
+python:
+  - 2.7
+services:
+  - docker
+install:
+  - docker build -t lighttpd .
+  - docker run --name lighttpd -v /etc/localtime:/etc/localtime:ro -v $PWD/htdocs:/var/www/localhost/htdocs -p 8080:80 -d lighttpd:latest
+script:
+  - docker ps | grep -q lighttpd
