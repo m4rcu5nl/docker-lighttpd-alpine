@@ -9,3 +9,7 @@ install:
   - docker run --name lighttpd -v /etc/localtime:/etc/localtime:ro -v $PWD/htdocs:/var/www/localhost/htdocs -p 8080:80 -d lighttpd:latest
 script:
   - docker ps | grep -q lighttpd
+after_success:
+  - docker build -t lighttpd .
+  - docker tag lighttpd:latest m4rcu5/lighttpd:latest
+  - docker push m4rcu5/lighttpd:latest
