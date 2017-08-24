@@ -12,4 +12,5 @@ script:
 after_success:
   - docker build -t lighttpd .
   - docker tag lighttpd:latest m4rcu5/lighttpd:latest
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker push m4rcu5/lighttpd:latest
