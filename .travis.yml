@@ -9,7 +9,7 @@ install:
   - docker run --name lighttpd -v /etc/localtime:/etc/localtime:ro -v $PWD/htdocs:/var/www/localhost/htdocs -p 8080:80 -d lighttpd:latest
 script:
   - docker ps | grep -q lighttpd
-  - test $(curl -I http://localhost 2>/dev/null | head -n1 | cut -d' ' -f2) == 200
+  - test "$(curl -I http://localhost:8080 2>/dev/null | head -n1 | cut -d' ' -f2)" == "200"
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_EVENT_TYPE" == "push" ]; then
     docker build -t lighttpd .;
