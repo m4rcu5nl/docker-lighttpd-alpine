@@ -1,14 +1,13 @@
 FROM alpine:3.5
+LABEL maintainer="Marcus Meurs <mail@m4rcu5.nl>"
 
+# Install packages
 RUN apk update && \
     apk add --no-cache \
-    lighttpd \
-    bash && \
+    lighttpd && \
     rm -rf /var/cache/apk/*
 
-ADD lighttpd.conf /etc/lighttpd/lighttpd.conf
-
+# Expose http port
 EXPOSE 80
-VOLUME /var/www/localhost/htdocs
 
 ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
