@@ -11,4 +11,9 @@ script:
   - docker ps | grep -q lighttpd
   - test $(curl -I http://localhost 2>/dev/null | head -n1 | cut -d' ' -f2) == 200
 after_success:
-  - test $TRAVIS_BRANCH = "master" -a $TRAVIS_EVENT_TYPE = "push" && docker build -t lighttpd . && docker tag lighttpd:latest m4rcu5/lighttpd:latest && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push m4rcu5/lighttpd:latest
+  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_EVENT_TYPE" == "push" ]; then
+    docker build -t lighttpd .;
+    docker tag lighttpd:latest m4rcu5/lighttpd:latest;
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push m4rcu5/lighttpd:latest;
+    fi
