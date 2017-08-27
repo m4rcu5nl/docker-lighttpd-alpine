@@ -9,8 +9,6 @@ RUN apk update && \
     curl && \
     rm -rf /var/cache/apk/*
 
-# Expose http(s) ports
-EXPOSE 80 443
 
 COPY config/lighttpd/ /etc/lighttpd/
 
@@ -21,5 +19,8 @@ COPY config/lighttpd/ /etc/lighttpd/
 
 HEALTHCHECK --interval=5m --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
+
+# Expose http(s) ports
+EXPOSE 80 443
 
 ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
