@@ -9,6 +9,12 @@ RUN apk update && \
     curl && \
     rm -rf /var/cache/apk/*
 
+# Create lighttpd ssl directory and generate self signed cert
+RUN mkdir /etc/lighttpd/ssl/ && \
+	openssl req -x509 -newkey rsa:4096 -keyout /tmp/key.pem -out /tmp/cert.pem -days 365 -subj '/CN=localhost' -nodes -sha256 && \
+	cat /tmp/key.pem /tmp/cert.pem > /etc/lighttpd/ssl/localhost.pem && \
+	rm /tmp/key.pem /tmp/cert.pem && \
+	chmod 400 /etc/lighttpd/ssl/localhost.pem
 
 COPY config/lighttpd/*.conf /etc/lighttpd/
 
