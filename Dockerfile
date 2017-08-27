@@ -16,13 +16,12 @@ RUN mkdir /etc/lighttpd/ssl/ && \
 	rm /tmp/key.pem /tmp/cert.pem && \
 	chmod 400 /etc/lighttpd/ssl/localhost.pem
 
+# Copy lighttpd config files. At this point it is all default except
+# including a custom ssl.conf in lighttpd.conf.
 COPY config/lighttpd/*.conf /etc/lighttpd/
 
-#
-# ToDo: fine tune configuration instead of bulk copy config files.
-# Also see if self signed cert can be generated during build
-#
-
+# Check every 5 minutes if lighttpd responds withing 3 seconds and update
+# container health status accordingly. 
 HEALTHCHECK --interval=5m --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
 
