@@ -18,3 +18,9 @@ after_success:
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker push m4rcu5/lighttpd:latest;
     fi
+  - if [ "$TRAVIS_BRANCH" == "develop" ] && [ "$TRAVIS_EVENT_TYPE" != "pull_request" ]; then
+    docker build -t lighttpd .;
+    docker tag lighttpd:latest m4rcu5/lighttpd:staging;
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push m4rcu5/lighttpd:staging;
+    fi
