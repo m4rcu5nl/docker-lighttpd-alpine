@@ -1,1 +1,1 @@
-*.pem
+#config/lighttpd/ssl/localhost.pem
