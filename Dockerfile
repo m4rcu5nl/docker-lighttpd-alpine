@@ -10,7 +10,7 @@ RUN apk update && \
     rm -rf /var/cache/apk/*
 
 
-COPY config/lighttpd/ /etc/lighttpd/
+COPY config/lighttpd/*.conf /etc/lighttpd/
 
 #
 # ToDo: fine tune configuration instead of bulk copy config files.
