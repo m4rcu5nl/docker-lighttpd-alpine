@@ -12,6 +12,13 @@ RUN apk update && \
 # Expose http(s) ports
 EXPOSE 80 443
 
+COPY config/lighttpd/ /etc/lighttpd/
+
+#
+# ToDo: fine tune configuration instead of bulk copy config files.
+# Also see if self signed cert can be generated during build
+#
+
 HEALTHCHECK --interval=5m --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
 
