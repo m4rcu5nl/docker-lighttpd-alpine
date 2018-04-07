@@ -20,9 +20,9 @@ RUN mkdir /etc/lighttpd/ssl/ && \
 # including a custom ssl.conf in lighttpd.conf.
 COPY config/lighttpd/*.conf /etc/lighttpd/
 
-# Check every 5 minutes if lighttpd responds withing 3 seconds and update
-# container health status accordingly. 
-HEALTHCHECK --interval=5m --timeout=3s \
+# Check every minute if lighttpd responds withing 1 second and update
+# container health status accordingly.
+HEALTHCHECK --interval=1m --timeout=1s \
   CMD curl -f http://localhost/ || exit 1
 
 # Expose http(s) ports
