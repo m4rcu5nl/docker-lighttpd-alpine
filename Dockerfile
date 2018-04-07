@@ -32,4 +32,8 @@ HEALTHCHECK --interval=1m --timeout=1s \
 # Expose http(s) ports
 EXPOSE 80 443
 
+# Make configuration path and webroot a volume
+VOLUME /etc/lighttpd/
+VOLUME /var/www/
+
 ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
