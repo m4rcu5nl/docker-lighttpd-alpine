@@ -1,6 +1,6 @@
-FROM alpine:3.7
+FROM alpine:3.9
 LABEL maintainer="Marcus Meurs <mail@m4rcu5.nl>" \
-      version="0.1.0"
+      version="1.0.0"
 
 # Install packages
 RUN apk update && \
@@ -25,7 +25,7 @@ COPY config/lighttpd/*.conf /etc/lighttpd/
 # for demo/testing without needing mounts during `docker run`
 COPY htdocs/index.html /var/www/localhost/htdocs/
 
-# Check every minute if lighttpd responds withing 1 second and update
+# Check every minute if lighttpd responds within 1 second and update
 # container health status accordingly.
 HEALTHCHECK --interval=1m --timeout=1s \
   CMD curl -f http://localhost/ || exit 1
