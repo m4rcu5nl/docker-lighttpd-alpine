@@ -4,6 +4,24 @@
 ![](files/docker-lighttpd.png)    
 The default build of this image is really just a clean install of lighttpd on Alpine Linux. The only change I made is adding minimal configuration for ssl and include a self signed certificate. Further customization magic should happen during docker run. Copies of the lighttpd config files can be found in `./config/lighttpd`.
 
+Build Examples
+----
+The default build looks like this and runs against the latest version of alpine available.
+```
+docker build -t username/lighttpd:latest .
+```
+
+Same as above explicitly
+```
+docker build -t username/lighttpd:latest --build-arg alpine_version=latest .
+```
+
+Building against an older alpine version.  Tested with 3.10 and 3.8
+```
+docker build -t username/lighttpd:alpine-3.10 --build-arg alpine_version=3.10 .
+```
+
+
 Run examples
 ----
 ```
