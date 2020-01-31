@@ -1,4 +1,5 @@
-FROM alpine:3.9
+ARG alpine_version=latest
+FROM alpine:$alpine_version
 LABEL maintainer="Marcus Meurs <mail@m4rcu5.nl>" \
       version="1.0.0"
 
