@@ -16,7 +16,7 @@ Same as above explicitly
 docker build -t username/lighttpd:latest --build-arg alpine_version=latest .
 ```
 
-Builing agaisnt an older alpine version.  Tested with 3.10 and 3.8
+Building against an older alpine version.  Tested with 3.10 and 3.8
 ```
 docker build -t username/lighttpd:alpine-3.10 --build-arg alpine_version=3.10 .
 ```
